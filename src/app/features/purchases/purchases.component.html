@@ -9,40 +9,42 @@
   </nav>
   <section class="info">
     <p>Hasta 24 meses <span class="highlight">con intereses</span>*</p>
-    <p>Todas la compras que selecciones, se diferirán al mismo plazo y tasa de interés.</p>
+    <p class="disclaimer">Todas la compras que selecciones, se diferirán al mismo plazo y tasa de interés.</p>
   </section>
-  <section class="purchases-list">
-    <div class="purchase-item">
-      <input type="radio" name="purchase" id="liverpool">
-      <label for="liverpool">
-        <div class="purchase-details">
-          <span class="merchant">Liverpool</span>
-          <span class="date">20/abril/2023</span>
-        </div>
-        <div class="amount">$6,300.00 MXN</div>
-      </label>
-    </div>
-    <div class="purchase-item">
-      <input type="radio" name="purchase" id="walmart">
-      <label for="walmart">
-        <div class="purchase-details">
-          <span class="merchant">Walmart</span>
-          <span class="date">17/abril/2023</span>
-        </div>
-        <div class="amount">$2,250.00 MXN</div>
-      </label>
-    </div>
-    <div class="purchase-item">
-      <input type="radio" name="purchase" id="volaris">
-      <label for="volaris">
-        <div class="purchase-details">
-          <span class="merchant">Aerolínea Volaris</span>
-          <span class="date">15/abril/2023</span>
-        </div>
-        <div class="amount">$3,840.00 MXN</div>
-      </label>
-    </div>
-  </section>
+  <div class="content-wrapper">
+    <section class="purchases-list">
+      <div class="purchase-item">
+        <input type="radio" name="purchase" id="liverpool">
+        <label for="liverpool">
+          <div class="purchase-details">
+            <span class="merchant">Liverpool</span>
+            <span class="date">20/abril/2023</span>
+          </div>
+          <div class="amount">$6,300.00 MXN</div>
+        </label>
+      </div>
+      <div class="purchase-item">
+        <input type="radio" name="purchase" id="walmart">
+        <label for="walmart">
+          <div class="purchase-details">
+            <span class="merchant">Walmart</span>
+            <span class="date">17/abril/2023</span>
+          </div>
+          <div class="amount">$2,250.00 MXN</div>
+        </label>
+      </div>
+      <div class="purchase-item">
+        <input type="radio" name="purchase" id="volaris">
+        <label for="volaris">
+          <div class="purchase-details">
+            <span class="merchant">Aerolínea Volaris</span>
+            <span class="date">15/abril/2023</span>
+          </div>
+          <div class="amount">$3,840.00 MXN</div>
+        </label>
+      </div>
+    </section>
+  </div>
   <footer>
     <button class="continue-button" disabled>Continuar</button>
     <p class="note">*Las compras participantes para diferir a meses con intereses deben ser superiores a $2,000.00 MXN</p>
