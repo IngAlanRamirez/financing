@@ -147,7 +147,7 @@
     }
 
     &--selected {
-      background-color: rgba($color-primary, 0.05);
+      // background-color removido
     }
 
     &:hover {
@@ -155,7 +155,7 @@
     }
 
     &--selected:hover {
-      background-color: rgba($color-primary, 0.08);
+      // background-color removido
     }
   }
 
