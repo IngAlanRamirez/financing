@@ -1,0 +1,190 @@
+[
+  {
+    "id": 1,
+    "nomCom": "Compra en Amazon.com.mx",
+    "fechaCompra": "2024-01-15T10:30:00Z",
+    "montoCompra": 5000.00,
+    "ofertas": [
+      {
+        "id": 101,
+        "tipo": "MSI",
+        "noMeses": "3",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 102,
+        "tipo": "MSI",
+        "noMeses": "6",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 103,
+        "tipo": "MCI",
+        "noMeses": "12",
+        "totalPago": 5500.00,
+        "interesMensual": 0.025
+      },
+      {
+        "id": 104,
+        "tipo": "MCI",
+        "noMeses": "18",
+        "totalPago": 5750.00,
+        "interesMensual": 0.020
+      },
+      {
+        "id": 105,
+        "tipo": "MCI",
+        "noMeses": "24",
+        "totalPago": 6000.00,
+        "interesMensual": 0.018
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nomCom": "Compra en Mercado Libre",
+    "fechaCompra": "2024-01-20T14:15:00Z",
+    "montoCompra": 3500.00,
+    "ofertas": [
+      {
+        "id": 201,
+        "tipo": "MSI",
+        "noMeses": "3",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 202,
+        "tipo": "MSI",
+        "noMeses": "6",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 203,
+        "tipo": "MCI",
+        "noMeses": "9",
+        "totalPago": 3800.00,
+        "interesMensual": 0.022
+      },
+      {
+        "id": 204,
+        "tipo": "MCI",
+        "noMeses": "12",
+        "totalPago": 4000.00,
+        "interesMensual": 0.020
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "nomCom": "Compra en Walmart Supercenter",
+    "fechaCompra": "2024-01-25T09:00:00Z",
+    "montoCompra": 12000.00,
+    "ofertas": [
+      {
+        "id": 301,
+        "tipo": "MSI",
+        "noMeses": "6",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 302,
+        "tipo": "MSI",
+        "noMeses": "12",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 303,
+        "tipo": "MCI",
+        "noMeses": "18",
+        "totalPago": 13500.00,
+        "interesMensual": 0.019
+      },
+      {
+        "id": 304,
+        "tipo": "MCI",
+        "noMeses": "24",
+        "totalPago": 14000.00,
+        "interesMensual": 0.017
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "nomCom": "Compra en Best Buy México",
+    "fechaCompra": "2024-01-28T16:45:00Z",
+    "montoCompra": 8500.00,
+    "ofertas": [
+      {
+        "id": 401,
+        "tipo": "MSI",
+        "noMeses": "3",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 402,
+        "tipo": "MSI",
+        "noMeses": "6",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 403,
+        "tipo": "MSI",
+        "noMeses": "9",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 404,
+        "tipo": "MCI",
+        "noMeses": "12",
+        "totalPago": 9500.00,
+        "interesMensual": 0.021
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "nomCom": "Compra en Liverpool",
+    "fechaCompra": "2024-02-01T11:20:00Z",
+    "montoCompra": 25000.00,
+    "ofertas": [
+      {
+        "id": 501,
+        "tipo": "MSI",
+        "noMeses": "6",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 502,
+        "tipo": "MSI",
+        "noMeses": "12",
+        "totalPago": null,
+        "interesMensual": null
+      },
+      {
+        "id": 503,
+        "tipo": "MCI",
+        "noMeses": "18",
+        "totalPago": 28000.00,
+        "interesMensual": 0.018
+      },
+      {
+        "id": 504,
+        "tipo": "MCI",
+        "noMeses": "24",
+        "totalPago": 30000.00,
+        "interesMensual": 0.016
+      }
+    ]
+  }
+]
+

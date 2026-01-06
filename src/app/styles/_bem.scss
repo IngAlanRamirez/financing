@@ -1,0 +1,43 @@
+// Utilidades BEM (Block Element Modifier)
+// Guía de uso de metodología BEM
+
+// Ejemplo de estructura BEM:
+// .block { }
+// .block__element { }
+// .block__element--modifier { }
+// .block--modifier { }
+
+// Helper para generar nombres BEM
+@function bem($block, $element: null, $modifier: null) {
+  $name: $block;
+  
+  @if $element {
+    $name: $name + '__' + $element;
+  }
+  
+  @if $modifier {
+    $name: $name + '--' + $modifier;
+  }
+  
+  @return $name;
+}
+
+// Mixin para generar estructura BEM
+@mixin block($name) {
+  .#{$name} {
+    @content;
+  }
+}
+
+@mixin element($name) {
+  &__#{$name} {
+    @content;
+  }
+}
+
+@mixin modifier($name) {
+  &--#{$name} {
+    @content;
+  }
+}
+

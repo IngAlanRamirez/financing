@@ -1,0 +1,108 @@
+<div class="confirm-modal-wrapper">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="cancel()" class="confirm-cancel">
+          Cancelar
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Confirmar</ion-title>
+      <ion-buttons slot="end">
+        <div style="width: 80px;"></div>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div class="confirm-container">
+
+        <!-- Información de la tarjeta -->
+        <div class="confirm-card-section">
+          <h6 class="confirm-card-title">Vas a diferir en tu tarjeta:</h6>
+          <div class="confirm-card-info">
+            @if (cardInfo().imageUrl) {
+              <img [src]="cardInfo().imageUrl" [alt]="cardInfo().name" class="confirm-card-image">
+            }
+            <div class="confirm-card-details">
+              <h4 class="confirm-card-name">{{ cardInfo().name }}</h4>
+              <p class="confirm-card-number">{{ cardInfo().number }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumen -->
+        <div class="confirm-summary">
+          @for (row of summaryRows(); track row.title) {
+            <div class="confirm-summary-row">
+              <div class="confirm-summary-title">{{ row.title }}</div>
+              <div class="confirm-summary-value">{{ row.value }}</div>
+            </div>
+          }
+        </div>
+
+        <!-- Términos y condiciones -->
+        <div class="confirm-terms">
+          <label class="confirm-terms-label">
+            <input 
+              type="checkbox"
+              class="confirm-terms-checkbox"
+              [checked]="termsAccepted()"
+              (change)="toggleTerms()"
+              id="confirm-terms-checkbox"
+            />
+            <span class="confirm-terms-text">
+              Acepto los 
+              <a (click)="openTermsModal(); $event.preventDefault()" class="confirm-terms-link">
+                Términos y Condiciones.
+              </a>
+            </span>
+          </label>
+        </div>
+
+        <!-- Botón de confirmación -->
+        <div class="confirm-actions">
+          <ion-button 
+            expand="block"
+            [disabled]="!canConfirm()"
+            (click)="confirmDiffer()"
+            class="confirm-button">
+            Continuar
+          </ion-button>
+        </div>
+      </div>
+    </ion-content>
+</div>
+
+<!-- Modal de términos y condiciones -->
+<ion-modal [isOpen]="showTermsModal()" (willDismiss)="closeTermsModal()" [canDismiss]="true">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Términos y condiciones</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeTermsModal()">
+            <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="terms-modal-content">
+      <div class="terms-modal-body">
+        <p [innerHTML]="terms()"></p>
+      </div>
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar>
+        <div class="terms-modal-footer">
+          <p class="terms-modal-accept-text">
+            Acepto que he leído y conozco <span>los términos y condiciones</span> del producto
+          </p>
+          <ion-button expand="block" (click)="acceptTermsFromModal()" class="terms-modal-button">
+            La quiero
+          </ion-button>
+        </div>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>
+

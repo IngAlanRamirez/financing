@@ -1,0 +1,111 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.differed {
+  &__loading {
+    @include flex-center;
+    height: 100vh;
+    background-color: $color-background;
+  }
+
+  &__container {
+    padding: $spacing-md;
+    background-color: $color-background;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__subtitle {
+    font-family: $font-text;
+    font-size: 1rem;
+    font-weight: 400;
+    color: $color-secondary;
+    margin: $spacing-md 0 $spacing-lg 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  &__card {
+    width: 100%;
+    max-width: 600px;
+    background-color: $color-background-white;
+    border-radius: $border-radius-md;
+    padding: $spacing-lg;
+    @include card-shadow;
+  }
+
+  &__detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid #e5e5e5;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__detail-label {
+    font-family: $font-text;
+    font-size: 1rem;
+    font-weight: 400;
+    color: $color-text;
+  }
+
+  &__detail-value {
+    font-family: $font-text;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-secondary;
+    text-align: right;
+  }
+
+  &__error {
+    padding: $spacing-xl;
+    text-align: center;
+    color: $color-text-light;
+
+    p {
+      margin: 0;
+      font-family: $font-text;
+      font-size: 0.875rem;
+    }
+  }
+
+  &__actions {
+    width: 100%;
+    max-width: 600px;
+    margin-top: $spacing-xl;
+    padding: 0 $spacing-md $spacing-md;
+  }
+
+  &__back-button {
+    --background: #{$color-primary};
+    --color: #{$color-background-white};
+    --border-radius: #{$border-radius-md};
+    font-family: $font-text;
+    font-weight: 600;
+    text-transform: none;
+    height: 48px;
+  }
+}
+
+// Header personalizado
+.differed-header {
+  ion-toolbar {
+    --background: #{$color-background-white};
+    --color: #{$color-secondary};
+  }
+
+  ion-back-button {
+    --color: #{$color-primary};
+  }
+}
+
+.differed-content {
+  --background: #{$color-background};
+}
+

@@ -1,0 +1,102 @@
+<ion-content [fullscreen]="true" class="ticket-content">
+  <!-- Banner de éxito -->
+  @if (showSuccessBanner() || isHidingBanner()) {
+    <div class="ticket-success-banner" [class.ticket-success-banner-hide]="!showSuccessBanner()">
+      <ion-icon name="checkmark-circle" class="ticket-success-icon"></ion-icon>
+      <span class="ticket-success-text">¡Compra{{ purchaseCount() > 1 ? 's' : '' }} diferida{{ purchaseCount() > 1 ? 's' : '' }} exitosamente!</span>
+    </div>
+  }
+
+  <!-- Contenedor principal del comprobante -->
+  <div class="ticket-container">
+    <!-- Encabezado del comprobante -->
+    <div class="ticket-header">
+      <div class="ticket-logo-wrapper">
+        <div class="ticket-logo-placeholder">S</div>
+      </div>
+      <h1 class="ticket-title">Comprobante</h1>
+      <ion-button fill="clear" class="ticket-close-button" (click)="close()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Descripción del diferimiento -->
+    <div class="ticket-description">
+      <p>Diferiste {{ ticketData()?.paymentTotalAmount | currency:'MXN':'symbol':'1.2-2' }} a {{ ticketData()?.month }} meses {{ hasInterest() ? 'con' : 'sin' }} intereses.</p>
+    </div>
+
+    <!-- Información de la tarjeta -->
+    <div class="ticket-card-section">
+      <img [src]="cardInfo().imageUrl" [alt]="cardInfo().name" class="ticket-card-image" />
+      <div class="ticket-card-name">{{ cardInfo().name }}</div>
+      <div class="ticket-card-number">TDC {{ cardInfo().number }}</div>
+    </div>
+
+    <!-- Sección de recordatorio -->
+    @if (showReminder()) {
+      <div class="ticket-reminder">
+        <div class="ticket-reminder-content">
+          <div class="ticket-reminder-icon-wrapper">
+            <ion-icon name="information-circle" class="ticket-reminder-icon"></ion-icon>
+          </div>
+          <div class="ticket-reminder-text">
+            <h4 class="ticket-reminder-title">Recuerda</h4>
+            <p class="ticket-reminder-message">Podrás consultar el detalle de las mensualidades en tu próximo Estado de Cuenta.</p>
+          </div>
+          <ion-button fill="clear" class="ticket-reminder-close" (click)="closeReminder()">
+            <ion-icon name="close" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    }
+
+    <!-- Detalles de la operación -->
+    <div class="ticket-details">
+      <div class="ticket-detail-row">
+        <div class="ticket-detail-label">Fecha y hora de operación</div>
+        <div class="ticket-detail-value">{{ ticketData()?.datetime | dateTimeReceipt }}</div>
+      </div>
+      <div class="ticket-detail-row">
+        <div class="ticket-detail-label">Ref. SuperMóvil</div>
+        <div class="ticket-detail-value">{{ ticketData()?.invoice }}</div>
+      </div>
+      <div class="ticket-detail-row">
+        <div class="ticket-detail-label">Tasa de interés anual</div>
+        <div class="ticket-detail-value">{{ ticketData()?.paymentAnualRate | number:'1.2-2' }}%</div>
+      </div>
+      <div class="ticket-detail-row">
+        <div class="ticket-detail-label">Tasa de interés mensual</div>
+        <div class="ticket-detail-value">{{ ticketData()?.paymentMonthRate | number:'1.2-2' }}%</div>
+      </div>
+      <div class="ticket-detail-row">
+        <div class="ticket-detail-label">Total a pagar con intereses sin IVA</div>
+        <div class="ticket-detail-value">{{ totalWithInterest() | currency:'MXN':'symbol':'1.2-2' }}</div>
+      </div>
+      <div class="ticket-detail-row">
+        <div class="ticket-detail-label">Pago mensual con intereses sin IVA</div>
+        <div class="ticket-detail-value">{{ ticketData()?.paymentTotalMonth | currency:'MXN':'symbol':'1.2-2' }}</div>
+      </div>
+    </div>
+
+    <!-- Lista de compras -->
+    @if (purchases().length > 0) {
+      <div class="ticket-purchases">
+        @for (purchase of purchases(); track purchase.id; let i = $index) {
+          <div class="ticket-purchase-item">
+            <span class="ticket-purchase-label">Compra {{ i + 1 }}</span>
+            <span class="ticket-purchase-value">{{ purchase.title }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Botón para compartir -->
+  <div class="ticket-share">
+    <ion-button fill="clear" class="ticket-share-button" (click)="shareReceipt()">
+      <ion-icon name="share-outline" class="ticket-share-icon"></ion-icon>
+    </ion-button>
+    <p class="ticket-share-text">Comparte el comprobante</p>
+  </div>
+</ion-content>
+

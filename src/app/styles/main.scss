@@ -1,0 +1,9 @@
+// Archivo principal de estilos
+// Importa todos los archivos de estilos base
+// Usamos @import aquí porque se importa desde global.scss que tiene @import de Ionic
+
+@import './variables';
+@import './mixins';
+@import './bem';
+@import './base';
+

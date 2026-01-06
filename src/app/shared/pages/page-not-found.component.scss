@@ -1,0 +1,24 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page-not-found {
+  @include flex-center;
+  @include flex-column;
+  height: 100vh;
+  text-align: center;
+  padding: $spacing-lg;
+  background-color: $color-background;
+
+  h1 {
+    font-size: 4rem;
+    color: $color-primary;
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: $color-text;
+    margin-bottom: $spacing-xl;
+  }
+}
+

@@ -1,0 +1,134 @@
+<ion-header [translucent]="true" class="differ-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Difiere tus compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="differ-content">
+  <div class="differ">
+    @if (isLoading()) {
+      <div class="differ__loading">
+        <ion-spinner></ion-spinner>
+      </div>
+    } @else {
+      <div class="differ__container">
+        <!-- Tabs -->
+        <div class="differ__tabs">
+          <ion-segment 
+            [value]="activeTab()" 
+            (ionChange)="onTabChange($event)"
+            class="differ__tabs-segment">
+            <ion-segment-button value="available">
+              <ion-label>Disponibles a diferir</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="history">
+              <ion-label>Historial de diferidas</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+
+        @if (activeTab() === 'available') {
+          <!-- Tab: Disponibles a diferir -->
+          <div class="differ__tab-content">
+            <!-- Información del plazo -->
+            <div class="differ__info">
+              <h2 class="differ__info-title">
+                Hasta <span class="differ__info-title--highlight">24 meses con intereses</span>*
+              </h2>
+              <p class="differ__info-text">
+                Todas las compras que selecciones, se diferirán al mismo plazo y tasa de interés.
+              </p>
+            </div>
+
+            <!-- Lista de compras -->
+            <div class="differ__list-container">
+              @if (group24mci().length > 0) {
+                @for (payment of group24mci(); track payment.id) {
+                  <div class="differ__item" [class.differ__item--selected]="payment.offer">
+                    <label class="differ__item-label" (click)="onLabelClick($event, payment, 'g24mci')">
+                      <input 
+                        type="checkbox" 
+                        class="differ__item-checkbox"
+                        [checked]="payment.offer"
+                        (change)="onPaymentClick(payment, 'g24mci', $event)"
+                        [id]="'payment-' + payment.id"
+                      />
+                      <div class="differ__item-content">
+                        <div class="differ__item-main">
+                          <span class="differ__item-title">{{ payment.title }}</span>
+                          <span class="differ__item-amount">{{ payment.amount | currency:'MXN':'symbol':'1.2-2' }}</span>
+                        </div>
+                        <span class="differ__item-date">{{ payment.date | datePayment }}</span>
+                      </div>
+                    </label>
+                  </div>
+                }
+              } @else {
+                <div class="differ__empty">
+                  <p>No hay compras disponibles para diferir</p>
+                </div>
+              }
+            </div>
+
+            <!-- Disclaimer -->
+            <p class="differ__disclaimer">
+              *Las compras participantes para diferir a meses con intereses deben ser superiores a $2,000.00 MXN
+            </p>
+          </div>
+        } @else {
+          <!-- Tab: Historial de diferidas -->
+          <div class="differ__tab-content">
+            <!-- Título del historial -->
+            <div class="differ__history-header">
+              <h2 class="differ__history-title">
+                A meses <span class="differ__history-title--highlight">con intereses</span>
+              </h2>
+            </div>
+
+            <!-- Lista de compras diferidas -->
+            <div class="differ__history">
+              @if (differedPayments().length > 0) {
+                @for (payment of differedPayments(); track payment.id) {
+                  <div class="differ__history-item" (click)="viewDifferedPayment(payment.id)">
+                    <div class="differ__history-content">
+                      <div class="differ__history-left">
+                        <span class="differ__history-merchant">{{ payment.nomCom }}</span>
+                        <span class="differ__history-date">{{ payment.fechaModificacion | datePayment }}</span>
+                      </div>
+                      <div class="differ__history-right">
+                        <span class="differ__history-amount">{{ getDifferedAmount(payment) | currency:'MXN':'symbol':'1.2-2' }}</span>
+                        <span class="differ__history-status">Diferido a meses</span>
+                      </div>
+                    </div>
+                    <ion-icon name="chevron-forward-outline" class="differ__history-arrow"></ion-icon>
+                  </div>
+                }
+              } @else {
+                <div class="differ__empty">
+                  <p>No tienes compras diferidas</p>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- Botón continuar (solo en tab de disponibles) -->
+        @if (activeTab() === 'available') {
+          <div class="differ__actions">
+            <button 
+              class="differ__button"
+              [class.differ__button--active]="canContinue()"
+              [disabled]="!canContinue()"
+              (click)="continue()">
+              Continuar
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</ion-content>
+

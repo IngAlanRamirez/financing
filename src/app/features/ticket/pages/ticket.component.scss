@@ -1,0 +1,349 @@
+@use '../../../styles/variables' as *;
+
+.ticket-content {
+  --background: #{$color-background};
+  padding: 0;
+}
+
+// Banner de éxito
+.ticket-success-banner {
+  background-color: #28a745;
+  color: white;
+  padding: $spacing-md $spacing-lg;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  width: 100%;
+  box-sizing: border-box;
+  animation: slideDownFadeIn 0.3s ease-out;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, max-height 0.5s ease-out;
+  overflow: hidden;
+  max-height: 100px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ticket-success-banner-hide {
+  opacity: 0;
+  transform: translateY(-100%);
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+}
+
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 100px;
+  }
+}
+
+.ticket-success-icon {
+  font-size: 24px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.ticket-success-text {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+  flex: 1;
+}
+
+// Contenedor principal
+.ticket-container {
+  background-color: $color-background-white;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+// Encabezado del comprobante
+.ticket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid $color-border;
+  position: relative;
+}
+
+.ticket-logo-wrapper {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-logo-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: $color-primary;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: $font-headline;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.ticket-title {
+  font-family: $font-headline;
+  font-weight: 700;
+  font-size: 20px;
+  color: $color-secondary;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.ticket-close-button {
+  --color: #{$color-primary};
+  margin: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  
+  ion-icon {
+    font-size: 24px;
+  }
+}
+
+// Descripción del diferimiento
+.ticket-description {
+  padding: $spacing-md $spacing-lg;
+  text-align: center;
+  border-bottom: 1px solid $color-border;
+  
+  p {
+    font-family: $font-text;
+    font-weight: 400;
+    font-size: 14px;
+    color: $color-text;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+// Sección de tarjeta
+.ticket-card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-lg $spacing-lg $spacing-md;
+  border-bottom: 1px solid $color-border;
+}
+
+.ticket-card-image {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: $spacing-sm;
+  background-color: #f2f2f2;
+  border-radius: $border-radius-full;
+  padding: $spacing-sm;
+}
+
+.ticket-card-name {
+  font-family: $font-text;
+  font-weight: 700;
+  font-size: 14px;
+  color: $color-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.ticket-card-number {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 14px;
+  color: $color-text-light;
+}
+
+// Sección de recordatorio
+.ticket-reminder {
+  background-color: #e6f3ff;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+}
+
+.ticket-reminder-content {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  position: relative;
+}
+
+.ticket-reminder-icon-wrapper {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0066cc;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.ticket-reminder-icon {
+  font-size: 16px;
+  color: white;
+}
+
+.ticket-reminder-text {
+  flex: 1;
+  padding-right: $spacing-md;
+}
+
+.ticket-reminder-title {
+  font-family: $font-text;
+  font-weight: 700;
+  font-size: 14px;
+  color: $color-secondary;
+  margin: 0 0 $spacing-xs 0;
+}
+
+.ticket-reminder-message {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 14px;
+  color: $color-text;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ticket-reminder-close {
+  --color: #{$color-primary};
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  
+  ion-icon {
+    font-size: 20px;
+  }
+}
+
+// Detalles de la operación
+.ticket-details {
+  padding: $spacing-md $spacing-lg;
+  border-top: 2px dashed $color-border;
+  border-bottom: 2px dashed $color-border;
+}
+
+.ticket-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: $spacing-sm 0;
+  gap: $spacing-md;
+}
+
+.ticket-detail-label {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 14px;
+  color: $color-text;
+  flex: 1;
+  text-align: left;
+}
+
+.ticket-detail-value {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 14px;
+  color: $color-secondary;
+  flex: 1;
+  text-align: right;
+}
+
+// Lista de compras
+.ticket-purchases {
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid $color-border;
+}
+
+.ticket-purchase-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-xs 0;
+  gap: $spacing-md;
+}
+
+.ticket-purchase-label {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 14px;
+  color: $color-text;
+  flex-shrink: 0;
+}
+
+.ticket-purchase-value {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 14px;
+  color: $color-secondary;
+  text-align: right;
+  flex: 1;
+}
+
+// Botón de compartir
+.ticket-share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-lg $spacing-lg $spacing-xl;
+  background-color: $color-background-white;
+}
+
+.ticket-share-button {
+  --color: #{$color-text-light};
+  --border-color: #{$color-primary};
+  --border-width: 2px;
+  --border-style: solid;
+  --border-radius: #{$border-radius-md};
+  width: 60px;
+  height: 60px;
+  margin-bottom: $spacing-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  ion-icon {
+    font-size: 28px;
+    color: $color-primary;
+  }
+}
+
+.ticket-share-text {
+  font-family: $font-text;
+  font-weight: 400;
+  font-size: 14px;
+  color: $color-text;
+  margin: 0;
+  text-align: center;
+}
+

@@ -1,0 +1,46 @@
+<ion-header [translucent]="true" class="differed-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tu compra diferida</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="differed-content">
+  <div class="differed">
+    @if (isLoading()) {
+      <div class="differed__loading">
+        <ion-spinner></ion-spinner>
+      </div>
+    } @else if (differedPayment) {
+      <div class="differed__container">
+        <h2 class="differed__subtitle">Detalles de la compra seleccionada</h2>
+        
+        <div class="differed__card">
+          @for (detail of paymentDetails(); track detail.label) {
+            <div class="differed__detail-row">
+              <span class="differed__detail-label">{{ detail.label }}</span>
+              <span class="differed__detail-value">{{ detail.value }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Botón de regreso -->
+        <div class="differed__actions">
+          <ion-button 
+            expand="block"
+            (click)="goBack()"
+            class="differed__back-button">
+            Regresar
+          </ion-button>
+        </div>
+      </div>
+    } @else {
+      <div class="differed__error">
+        <p>Compra diferida no encontrada</p>
+      </div>
+    }
+  </div>
+</ion-content>
+

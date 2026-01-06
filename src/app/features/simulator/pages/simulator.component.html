@@ -1,0 +1,140 @@
+<ion-header [translucent]="true" class="simulator-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Difiere tus compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="simulator-content">
+  <div class="simulator">
+    <div class="simulator__container">
+      <!-- Texto de selección de plazo -->
+      <p class="simulator__prompt">
+        <span class="simulator__prompt-text">Elige el plazo a </span>
+        <span class="simulator__prompt-highlight">meses con </span>
+        <span class="simulator__prompt-text">intereses</span>
+      </p>
+
+      <!-- Botones de selección de plazo -->
+      <div class="simulator__months">
+        @for (months of availableMonths; track months) {
+          <button 
+            class="simulator__month-button"
+            [class.simulator__month-button--selected]="selectedMonths() === months"
+            (click)="selectMonths(months)">
+            <ion-icon 
+              name="calendar-outline" 
+              class="simulator__month-icon">
+            </ion-icon>
+            <span>{{ months }} Meses</span>
+          </button>
+        }
+      </div>
+
+      <!-- Sección de compras -->
+      <div class="simulator__purchases-header">
+        <div class="simulator__purchases-title-group">
+          <div class="simulator__purchases-title">
+            <span class="simulator__purchases-count">({{ summary().count }})</span>
+            <span>Compras a diferir</span>
+          </div>
+          <p class="simulator__purchases-subtitle">Pagos con intereses sin IVA.</p>
+        </div>
+        <a href="#" class="simulator__more-detail" (click)="toggleDetails(); $event.preventDefault()">
+          {{ showDetails() ? 'Menos detalle' : 'Más detalle' }}
+        </a>
+      </div>
+
+      <!-- Lista de compras -->
+      <div class="simulator__purchases-section">
+        <div class="simulator__purchases-list">
+          @for (payment of filteredPayments(); track payment.id) {
+            <div class="simulator__purchase-item">
+              <div class="simulator__purchase-content">
+                <div class="simulator__purchase-row">
+                  <label class="simulator__purchase-label" [for]="'payment-' + payment.id">
+                    <input 
+                      type="checkbox" 
+                      class="simulator__purchase-checkbox"
+                      [checked]="payment.selected"
+                      (change)="togglePayment(payment)"
+                      [id]="'payment-' + payment.id"
+                    />
+                    <span class="simulator__purchase-name">{{ payment.title }}</span>
+                  </label>
+                  
+                  @if (!showDetails()) {
+                    <div class="simulator__purchase-amount-group">
+                      <span class="simulator__purchase-amount-label">Pago mensual:</span>
+                      <span class="simulator__purchase-amount-value">{{ payment.monthlyPayment | currency:'MXN':'symbol':'1.2-2' }}</span>
+                    </div>
+                  } @else {
+                    <div class="simulator__purchase-detail-right">
+                      <span class="simulator__purchase-detail-label">Pago mensual:</span>
+                      <span class="simulator__purchase-detail-value">{{ payment.monthlyPayment | currency:'MXN':'symbol':'1.2-2' }}</span>
+                    </div>
+                  }
+                </div>
+                
+                @if (showDetails()) {
+                  <div class="simulator__purchase-details">
+                    <div class="simulator__purchase-detail-row-first">
+                      <div class="simulator__purchase-detail-left">
+                        <span class="simulator__purchase-detail-label">Compra:</span>
+                        <span class="simulator__purchase-detail-value">{{ payment.amount | currency:'MXN':'symbol':'1.2-2' }}</span>
+                      </div>
+                      <div class="simulator__purchase-detail-total">
+                        <span class="simulator__purchase-detail-label">Total a pagar:</span>
+                        <span class="simulator__purchase-detail-value">{{ payment.total || payment.amount | currency:'MXN':'symbol':'1.2-2' }}</span>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Resumen -->
+      <h3 class="simulator__summary-title">Resumen</h3>
+      
+      <div class="simulator__summary">
+        <div class="simulator__summary-row">
+          <span class="simulator__summary-label">Total a pagar</span>
+          <div class="simulator__summary-value-group">
+            <span class="simulator__summary-value">{{ summary().totalAmount | currency:'MXN':'symbol':'1.2-2' }}</span>
+            <span class="simulator__summary-note">con interés sin IVA.</span>
+          </div>
+        </div>
+
+        <div class="simulator__summary-row">
+          <span class="simulator__summary-label">Tasa de interés anual</span>
+          <span class="simulator__summary-value">{{ summary().annualRate }}%</span>
+        </div>
+
+        <div class="simulator__summary-row">
+          <span class="simulator__summary-label">Tasa de interés mensual</span>
+          <span class="simulator__summary-value">{{ summary().monthlyRate }}%</span>
+        </div>
+
+        <div class="simulator__summary-row simulator__summary-row--highlight">
+          <span class="simulator__summary-label">Pago mensual</span>
+          <span class="simulator__summary-value">{{ summary().monthlyPayment | currency:'MXN':'symbol':'1.2-2' }}</span>
+        </div>
+      </div>
+
+      <!-- Botón continuar -->
+      <div class="simulator__actions">
+        <ion-button 
+          expand="block"
+          (click)="continue()"
+          class="simulator__continue-button">
+          Continuar
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

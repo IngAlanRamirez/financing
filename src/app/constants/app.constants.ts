@@ -1,0 +1,21 @@
+/**
+ * Constantes de la aplicación
+ */
+
+export const CARD_IMAGE = {
+  URL: '../../../../assets/cards/'
+};
+
+export const CARD_IMAGES = {
+  SNTDR_SF: 'A_SNTDR_SF_VERTICAL.svg',
+  SNTDR_ORO: 'A_SNTDR_ORO_VERTICAL.svg',
+  SNTDR_ACC: 'A_SNTDR_ACC_VERTICAL.svg',
+  LIKEU_BLUE: 'LIKE_U_BLUE_VERTICAL.svg',
+  LIKEU_RED: 'LIKE_U_RED_VERTICAL.svg',
+  LIKEU_STAR: 'LIKE_U_STAR_VERTICAL.svg',
+  LIKEU_PINK: 'LIKE_U_PINK_VERTICAL.svg',
+  LIKEU_GREEN: 'LIKE_U_GREEN_VERTICAL.svg',
+  LIKEU_WHITE: 'LIKE_U_WHITE_VERTICAL.svg',
+  SNTNDR_GENERICA: 'SNTNDR_GENERICA_VERTICAL.svg'
+};
+

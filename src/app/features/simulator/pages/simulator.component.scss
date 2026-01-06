@@ -1,0 +1,461 @@
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.simulator {
+  padding: 0;
+  background-color: $color-background;
+  min-height: 100vh;
+
+  &__container {
+    padding: $spacing-md;
+    padding-bottom: 100px; // Espacio para el botón
+  }
+
+  &__prompt {
+    font-family: $font-text;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: $spacing-md 0 $spacing-md 0;
+    line-height: 1.5;
+  }
+
+  &__prompt-text {
+    color: $color-text;
+  }
+
+  &__prompt-highlight {
+    color: $color-primary;
+  }
+
+  // Botones de meses
+  &__months {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: $spacing-xs;
+    
+    // Ocultar scrollbar completamente pero mantener funcionalidad
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE y Edge
+    
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari, Opera
+    }
+  }
+
+  &__month-button {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 37px;
+    padding: 8px 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 60px;
+    background-color: $color-background-white;
+    font-family: $font-text;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: $color-secondary;
+    cursor: pointer;
+    transition: all $transition-fast;
+    white-space: nowrap;
+    box-sizing: border-box;
+
+    &--selected {
+      background-color: $color-secondary;
+      color: $color-background-white;
+      border-color: $color-secondary;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 150%;
+      letter-spacing: 0px;
+    }
+
+    &:hover:not(&--selected) {
+      background-color: #f5f5f5;
+    }
+  }
+
+  &__month-icon {
+    font-size: 1.25rem;
+  }
+
+  // Sección de compras
+  &__purchases-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-md;
+  }
+
+  &__purchases-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    flex: 1;
+    justify-content: center;
+  }
+
+  &__purchases-subtitle {
+    font-family: $font-text;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    color: $color-text-light;
+    margin: 0;
+  }
+
+  &__purchases-section {
+    background-color: $color-background-white;
+    border-radius: $border-radius-md;
+    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
+    @include card-shadow;
+  }
+
+  &__purchases-title {
+    font-family: $font-text;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: $color-secondary;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__purchases-count {
+    font-weight: 700;
+  }
+
+  &__more-detail {
+    font-family: $font-text;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: $color-primary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
+  &__purchases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__purchase-item {
+    padding: 8px 0px;
+    border-bottom: 1px solid #e5e5e5;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__purchase-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__purchase-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-sm;
+    width: 100%;
+  }
+
+  &__purchase-label {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+    flex: 1;
+  }
+
+  &__purchase-details {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding-left: calc(24px + $spacing-sm); // Alineado con el checkbox
+  }
+
+  &__purchase-detail-row-first {
+    display: flex;
+    justify-content: space-between;
+    gap: $spacing-md;
+  }
+
+
+  &__purchase-detail-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  &__purchase-detail-total {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+  }
+
+  &__purchase-detail-right {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+  }
+
+  &__purchase-detail-label {
+    font-family: $font-text;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 10px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    text-align: right;
+    vertical-align: middle;
+    color: $color-text-light;
+  }
+
+  &__purchase-detail-left &__purchase-detail-label {
+    text-align: left;
+  }
+
+  &__purchase-detail-value {
+    font-family: $font-text;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 5%;
+    vertical-align: middle;
+    color: $color-secondary;
+  }
+
+  &__purchase-checkbox {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    flex-shrink: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid #4caf50;
+    border-radius: 50%;
+    background-color: white;
+    position: relative;
+    transition: all $transition-fast;
+
+    &:checked {
+      background-color: #4caf50;
+      border-color: #4caf50;
+      
+      &::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1;
+      }
+    }
+
+    &:hover {
+      border-color: color.adjust(#4caf50, $lightness: -10%);
+    }
+  }
+
+  &__purchase-name {
+    font-family: $font-text;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 5%;
+    vertical-align: middle;
+    color: $color-secondary;
+    flex: 1;
+  }
+
+  &__purchase-amount-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  &__purchase-amount-label {
+    font-family: $font-text;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 10px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    text-align: right;
+    vertical-align: middle;
+    color: $color-text-light;
+  }
+
+  &__purchase-amount-value {
+    font-family: $font-text;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 5%;
+    vertical-align: middle;
+    color: $color-secondary;
+    white-space: nowrap;
+  }
+
+  // Resumen
+  &__summary-title {
+    font-family: $font-headline;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: $color-secondary;
+    margin: 0 0 $spacing-md 0;
+  }
+
+  &__summary {
+    background-color: $color-background-white;
+    border-radius: $border-radius-md;
+    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
+    @include card-shadow;
+    overflow: hidden; // Para que el border-radius funcione correctamente
+  }
+
+  &__summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: $spacing-xs 0;
+
+    &--highlight {
+      background-color: rgba(#4caf50, 0.1);
+      margin: $spacing-xs (-$spacing-md) (-$spacing-md) (-$spacing-md);
+      padding: $spacing-xs $spacing-md;
+      border-radius: 0 0 $border-radius-md $border-radius-md;
+    }
+  }
+
+  &__summary-label {
+    font-family: $font-text;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: $color-text;
+  }
+
+  &__summary-value {
+    font-family: $font-text;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: $color-secondary;
+    text-align: right;
+  }
+
+  &__summary-row--highlight &__summary-value {
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    text-align: right;
+  }
+
+  &__summary-value-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: calc($spacing-xs / 2);
+  }
+
+  &__summary-note {
+    font-family: $font-text;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    color: $color-text-light;
+  }
+
+  // Botón continuar
+  &__actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $spacing-md;
+    padding-bottom: calc($spacing-md + env(safe-area-inset-bottom));
+    background-color: $color-background;
+    border-top: 1px solid #e5e5e5;
+    z-index: $z-index-fixed;
+  }
+
+  &__continue-button {
+    --background: #{$color-primary};
+    --color: #{$color-background-white};
+    --border-radius: #{$border-radius-md};
+    font-family: $font-text;
+    font-weight: 600;
+    text-transform: none;
+    height: 48px;
+  }
+}
+
+// Header personalizado
+.simulator-header {
+  ion-toolbar {
+    --background: #{$color-background-white};
+    --color: #{$color-secondary};
+  }
+
+  ion-back-button {
+    --color: #{$color-primary};
+  }
+}
+
+.simulator-content {
+  --background: #{$color-background};
+}

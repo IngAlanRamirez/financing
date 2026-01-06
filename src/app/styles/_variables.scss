@@ -1,0 +1,51 @@
+// Variables globales del proyecto
+
+// Colores
+$color-primary: #ec0000;
+$color-secondary: #191919;
+$color-text: #4c4c4c;
+$color-text-light: #595959;
+$color-background: #F2F2F2;
+$color-background-white: #ffffff;
+$color-border: #d9d9d9;
+$color-error: #dc3545;
+$color-success: #28a745;
+
+// Tipografías
+$font-headline: 'Santander Headline', Arial, Helvetica, sans-serif;
+$font-text: 'Santander Text', Arial, Helvetica, sans-serif;
+
+// Espaciados
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+
+// Breakpoints
+$breakpoint-mobile: 320px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1440px;
+
+// Z-index layers
+$z-index-base: 1;
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Transiciones
+$transition-fast: 0.15s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-full: 50px;
+
